@@ -1,7 +1,7 @@
-import 'package:riverpod_ecommerce_app_firebase/src/features/cart/application/cart_service.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/utils/currency_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/features/cart/application/cart_service.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/utils/currency_formatter.dart';
 
 /// Text widget for showing the total price of the cart
 class CartTotalText extends ConsumerWidget {

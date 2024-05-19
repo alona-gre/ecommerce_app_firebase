@@ -1,6 +1,7 @@
 import 'package:riverpod_ecommerce_app_firebase/src/features/products/data/test_products.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/authentication/domain/app_user.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/reviews/application/fake_reviews_service.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/features/reviews/application/reviews_service.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/reviews/domain/review.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -22,7 +23,7 @@ void main() {
     productsRepository = MockProductsRepository();
   });
 
-  FakeReviewsService makeReviewsService() {
+  ReviewsService makeReviewsService() {
     return FakeReviewsService(
       fakeProductsRepository: productsRepository,
       authRepository: authRepository,

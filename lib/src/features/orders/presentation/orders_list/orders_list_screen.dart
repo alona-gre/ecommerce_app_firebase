@@ -1,12 +1,12 @@
-import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/async_value_widget.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/features/orders/application/user_orders_provider.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/features/orders/presentation/orders_list/order_card.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/localization/string_hardcoded.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/async_value_widget.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/responsive_center.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/constants/app_sizes.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/features/orders/application/user_orders_provider.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/orders/domain/order.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/features/orders/presentation/orders_list/order_card.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/localization/string_hardcoded.dart';
 
 /// Shows the list of orders placed by the signed-in user.
 class OrdersListScreen extends StatelessWidget {

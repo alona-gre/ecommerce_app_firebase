@@ -1,7 +1,7 @@
 import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/async_value_widget.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/constants/breakpoints.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/products/domain/product.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/features/reviews/data/fake_reviews_repository.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/features/reviews/data/reviews_repository.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/reviews/presentation/product_reviews/product_review_card.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/responsive_center.dart';

@@ -1,7 +1,7 @@
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/cart/application/cart_service.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/cart/domain/item.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/products/domain/product.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'shopping_cart_screen_controller.g.dart';
 

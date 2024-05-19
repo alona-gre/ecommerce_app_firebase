@@ -1,13 +1,13 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/action_text_button.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/alert_dialogs.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/features/authentication/data/fake_auth_repository.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/responsive_center.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/constants/app_sizes.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/features/authentication/data/auth_repository.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/authentication/presentation/account/account_screen_controller.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/localization/string_hardcoded.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/utils/async_value_ui.dart';
-import 'package:flutter/material.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/action_text_button.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/responsive_center.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/constants/app_sizes.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// Simple account screen showing some user info and a logout button.
 class AccountScreen extends ConsumerWidget {

@@ -1,4 +1,4 @@
-import 'package:riverpod_ecommerce_app_firebase/src/features/reviews/application/fake_reviews_service.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/features/reviews/application/reviews_service.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/reviews/domain/review.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/reviews/presentation/leave_review_screen/leave_review_controller.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/utils/current_date_provider.dart';

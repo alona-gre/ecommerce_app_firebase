@@ -1,9 +1,9 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/primary_button.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/checkout/presentation/payment/payment_button_controller.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/localization/string_hardcoded.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/utils/async_value_ui.dart';
-import 'package:flutter/material.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/primary_button.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// Button used to initiate the payment flow.
 class PaymentButton extends ConsumerWidget {

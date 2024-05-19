@@ -1,6 +1,6 @@
+import 'package:equatable/equatable.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/exceptions/app_exception.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/products/domain/product.dart';
-import 'package:equatable/equatable.dart';
 
 /// Order status
 enum OrderStatus { confirmed, shipped, delivered }

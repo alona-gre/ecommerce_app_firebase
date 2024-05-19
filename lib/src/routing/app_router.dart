@@ -1,4 +1,4 @@
-import 'package:riverpod_ecommerce_app_firebase/src/features/authentication/data/fake_auth_repository.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/features/authentication/data/auth_repository.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/authentication/presentation/account/account_screen.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/authentication/presentation/sign_in/email_password_sign_in_form_type.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/authentication/presentation/sign_in/email_password_sign_in_screen.dart';

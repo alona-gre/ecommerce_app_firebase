@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/async_value_widget.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/constants/breakpoints.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/features/products/data/fake_products_repository.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/features/products/data/products_repository.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/products/domain/product.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/products/presentation/products_list/product_card.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/localization/string_hardcoded.dart';

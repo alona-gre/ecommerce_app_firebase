@@ -1,8 +1,8 @@
-import 'package:riverpod_ecommerce_app_firebase/src/features/authentication/data/fake_auth_repository.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/features/orders/data/fake_orders_repository.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/features/authentication/data/auth_repository.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/features/orders/data/orders_repository.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/orders/domain/order.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/products/domain/product.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'user_orders_provider.g.dart';
 

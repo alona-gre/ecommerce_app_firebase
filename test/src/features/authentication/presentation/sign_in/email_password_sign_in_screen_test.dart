@@ -12,7 +12,6 @@ void main() {
   setUp(() {
     authRepository = MockAuthRepository();
   });
-
   group('sign in', () {
     testWidgets('''
         Given formType is signIn

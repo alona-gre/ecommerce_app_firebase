@@ -1,7 +1,7 @@
 import 'package:riverpod_ecommerce_app_firebase/src/features/products/data/test_products.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/cart/application/cart_service.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/cart/domain/cart.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/features/products/data/fake_products_repository.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/features/products/data/products_repository.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/products/domain/product.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';

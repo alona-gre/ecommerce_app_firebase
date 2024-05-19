@@ -1,9 +1,9 @@
-import 'package:riverpod_ecommerce_app_firebase/src/features/cart/application/cart_service.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/routing/app_router.dart';
 import 'package:flutter/material.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/constants/app_sizes.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/constants/app_sizes.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/features/cart/application/cart_service.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/routing/app_router.dart';
 
 /// Shopping cart icon with items count badge
 class ShoppingCartIcon extends ConsumerWidget {

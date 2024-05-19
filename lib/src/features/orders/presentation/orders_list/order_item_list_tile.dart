@@ -1,12 +1,12 @@
-import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/async_value_widget.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/features/products/data/fake_products_repository.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/features/products/domain/product.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/localization/string_hardcoded.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/async_value_widget.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/custom_image.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/constants/app_sizes.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/cart/domain/item.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/features/products/data/products_repository.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/features/products/domain/product.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/localization/string_hardcoded.dart';
 
 /// Shows an individual order item, including price and quantity.
 class OrderItemListTile extends ConsumerWidget {

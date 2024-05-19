@@ -1,18 +1,19 @@
 import 'dart:math';
 
-import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/async_value_widget.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/features/cart/presentation/shopping_cart/shopping_cart_screen_controller.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/features/products/data/fake_products_repository.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/localization/string_hardcoded.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/utils/currency_formatter.dart';
 import 'package:flutter/material.dart';
+
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/async_value_widget.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/custom_image.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/features/cart/presentation/item_quantity_selector.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/responsive_two_column_layout.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/constants/app_sizes.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/cart/domain/item.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/features/cart/presentation/item_quantity_selector.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/features/cart/presentation/shopping_cart/shopping_cart_screen_controller.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/features/products/data/products_repository.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/products/domain/product.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/localization/string_hardcoded.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/utils/currency_formatter.dart';
 
 /// Shows a shopping cart item (or loading/error UI if needed)
 class ShoppingCartItem extends ConsumerWidget {

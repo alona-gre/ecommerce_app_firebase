@@ -1,5 +1,5 @@
-import 'package:riverpod_ecommerce_app_firebase/src/features/products/domain/product.dart';
 import 'package:equatable/equatable.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/features/products/domain/product.dart';
 
 /// A product along with a quantity that can be added to an order/cart
 class Item extends Equatable {

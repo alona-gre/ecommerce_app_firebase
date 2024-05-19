@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:riverpod_ecommerce_app_firebase/src/features/checkout/application/fake_checkout_service.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/utils/notifier_mounted.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/features/checkout/application/checkout_service.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/utils/notifier_mounted.dart';
 
 part 'payment_button_controller.g.dart';
 

@@ -1,12 +1,13 @@
-import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/empty_placeholder_widget.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/constants/breakpoints.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/features/cart/presentation/cart_total/cart_total_with_cta.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/localization/string_hardcoded.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/decorated_box_with_shadow.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/empty_placeholder_widget.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/responsive_center.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/constants/app_sizes.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/constants/breakpoints.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/cart/domain/item.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/features/cart/presentation/cart_total/cart_total_with_cta.dart';
+
+import 'package:riverpod_ecommerce_app_firebase/src/localization/string_hardcoded.dart';
 
 /// Responsive widget showing the cart items and the checkout button
 class ShoppingCartItemsBuilder extends StatelessWidget {

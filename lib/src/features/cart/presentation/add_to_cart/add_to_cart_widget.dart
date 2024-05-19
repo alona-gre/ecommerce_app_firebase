@@ -1,15 +1,16 @@
 import 'dart:math';
 
-import 'package:riverpod_ecommerce_app_firebase/src/features/cart/application/cart_service.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/features/cart/presentation/add_to_cart/add_to_cart_controller.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/localization/string_hardcoded.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/utils/async_value_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/features/cart/presentation/item_quantity_selector.dart';
+
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/primary_button.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/constants/app_sizes.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/features/cart/application/cart_service.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/features/cart/presentation/add_to_cart/add_to_cart_controller.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/features/cart/presentation/item_quantity_selector.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/products/domain/product.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/localization/string_hardcoded.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/utils/async_value_ui.dart';
 
 /// A widget that shows an [ItemQuantitySelector] along with a [PrimaryButton]
 /// to add the selected quantity of the item to the cart.

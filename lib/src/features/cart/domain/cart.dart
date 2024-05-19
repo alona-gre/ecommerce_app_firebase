@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
-
 import 'package:riverpod_ecommerce_app_firebase/src/features/cart/domain/item.dart';
+
 import 'package:riverpod_ecommerce_app_firebase/src/features/products/domain/product.dart';
 
 /// Model class representing the shopping cart contents.
