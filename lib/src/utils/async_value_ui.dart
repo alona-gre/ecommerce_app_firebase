@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/alert_dialogs.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/exceptions/app_exception.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/localization/string_hardcoded.dart';
@@ -20,7 +21,9 @@ extension AsyncValueUI on AsyncValue {
   }
 
   String _errorMessage(Object? error) {
-    if (error is AppException) {
+    if (error is FirebaseAuthException) {
+      return error.message ?? error.message.toString();
+    } else if (error is AppException) {
       return error.message;
     } else {
       return error.toString();
