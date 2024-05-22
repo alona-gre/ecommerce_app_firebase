@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/authentication/data/auth_repository.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/features/authentication/domain/app_user.dart';
 
 part 'account_screen_controller.g.dart';
 
@@ -15,5 +16,13 @@ class AccountScreenController extends _$AccountScreenController {
     final authRepository = ref.read(authRepositoryProvider);
     state = const AsyncLoading();
     state = await AsyncValue.guard(() => authRepository.signOut());
+  }
+
+  Future<bool> sendEmailVerification(AppUser user) async {
+    state = const AsyncLoading();
+    state = await AsyncValue.guard(() {
+      return user.sendEmailVerification();
+    });
+    return state.hasError == false;
   }
 }
