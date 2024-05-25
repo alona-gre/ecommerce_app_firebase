@@ -35,7 +35,6 @@ import 'features/authentication/data/fake_auth_repository.dart';
 Future<ProviderContainer> createFirebaseProviderContainer(
     {bool addDelay = true}) async {
   // TODO: Replace with Firebase repositories
-  final productsRepository = FakeProductsRepository(addDelay: addDelay);
   final reviewsRepository = FakeReviewsRepository(addDelay: addDelay);
   // * set delay to false to make it easier to add/remove items
   final localCartRepository = FakeLocalCartRepository(addDelay: false);
@@ -45,7 +44,6 @@ Future<ProviderContainer> createFirebaseProviderContainer(
   return ProviderContainer(
     overrides: [
       // repositories
-      productsRepositoryProvider.overrideWithValue(productsRepository),
       reviewsRepositoryProvider.overrideWithValue(reviewsRepository),
       ordersRepositoryProvider.overrideWithValue(ordersRepository),
       localCartRepositoryProvider.overrideWithValue(localCartRepository),
