@@ -10,24 +10,56 @@ class ProductsRepository {
   final FirebaseFirestore _firestore;
   ProductsRepository(this._firestore);
 
-  Future<List<Product>> fetchProductsList() {
-    return Future.value([]);
+  static String productsPath() => 'products';
+  static String productPath(ProductID id) => 'products/$id';
+
+  DocumentReference<Product> _productRef(ProductID id) =>
+      _firestore.doc(productPath(id)).withConverter(
+            fromFirestore: (doc, _) => Product.fromMap(doc.data()!),
+            toFirestore: (Product product, options) => product.toMap(),
+          );
+
+  Query<Product> _productsRef() => _firestore
+      .collection(productsPath())
+      .withConverter(
+        fromFirestore: (doc, _) => Product.fromMap(doc.data()!),
+        toFirestore: (Product product, options) => product.toMap(),
+      )
+      .orderBy('id');
+
+  Future<List<Product>> fetchProductsList() async {
+    final ref = _productsRef();
+    final snapshot = await ref.get();
+    return snapshot.docs.map((docSnapshot) => docSnapshot.data()).toList();
   }
 
   Stream<List<Product>> watchProductsList() {
-    return Stream.value([]);
+    final ref = _productsRef();
+    return ref.snapshots().map((snapshot) =>
+        snapshot.docs.map((docSnapshot) => docSnapshot.data()).toList());
   }
 
   Stream<Product?> watchProduct(ProductID id) {
-    return Stream.value(null);
+    final ref = _productRef(id);
+    return ref.snapshots().map((snapshot) => snapshot.data());
   }
 
-  Future<List<Product>> searchProducts(String query) {
-    return Future.value([]);
+// * Temporary search implementation.
+  // * Note: this is quite inefficient as it pulls the entire product list
+  // * and then filters the data on the client
+  // TODO: Update
+  Future<List<Product>> searchProducts(String query) async {
+    // 1. Get all products from Firestore
+    final productsList = await fetchProductsList();
+    // 2. Perform client-side filtering
+    return productsList
+        .where((product) =>
+            product.title.toLowerCase().contains(query.toLowerCase()))
+        .toList();
   }
 
   Future<void> createProduct(ProductID id, String imageUrl) {
-    return _firestore.doc('products/$id').set(
+    return _firestore.doc(productPath(id)).set(
       {
         'id': id,
         'imageUrl': imageUrl,
