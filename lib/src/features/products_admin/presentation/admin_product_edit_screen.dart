@@ -10,10 +10,12 @@ import 'package:riverpod_ecommerce_app_firebase/src/constants/app_sizes.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/products/data/products_repository.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/products/domain/product.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/products_admin/data/template_products_providers.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/features/products_admin/presentation/admin_product_edit_controller.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/products_admin/presentation/product_validator.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/localization/string_hardcoded.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/utils/async_value_ui.dart';
 
 /// Widget screen for updating existing products (edit mode).
 /// Products are first created inside [AdminProductUploadScreen].
@@ -92,60 +94,48 @@ class _AdminProductScreenContentsState
   }
 
   Future<void> _delete() async {
-    await showAlertDialog(
+    final delete = await showAlertDialog(
       context: context,
-      title: 'Not implemented'.hardcoded,
+      title: 'Are you sure?'.hardcoded,
+      cancelActionText: 'Cancel'.hardcoded,
+      defaultActionText: 'Delete'.hardcoded,
     );
-    // TODO: Uncomment
-    // final delete = await showAlertDialog(
-    //   context: context,
-    //   title: 'Are you sure?'.hardcoded,
-    //   cancelActionText: 'Cancel'.hardcoded,
-    //   defaultActionText: 'Delete'.hardcoded,
-    // );
-    // if (delete == true) {
-    //   ref
-    //       .read(adminProductEditControllerProvider.notifier)
-    //       .deleteProduct(product);
-    // }
+    if (delete == true) {
+      ref
+          .read(adminProductEditControllerProvider.notifier)
+          .deleteProduct(product);
+    }
   }
 
   Future<void> _submit() async {
     if (_formKey.currentState!.validate()) {
-      await showAlertDialog(
-        context: context,
-        title: 'Not implemented'.hardcoded,
+      final scaffoldMessenger = ScaffoldMessenger.of(context);
+      await ref.read(adminProductEditControllerProvider.notifier).updateProduct(
+            product: product,
+            title: _titleController.text,
+            description: _descriptionController.text,
+            price: _priceController.text,
+            availableQuantity: _availableQuantityController.text,
+          );
+      // Inform the user that the product has been updated
+      scaffoldMessenger.showSnackBar(
+        SnackBar(
+          content: Text(
+            'Product updated'.hardcoded,
+          ),
+        ),
       );
-      // TODO: Uncomment
-      // final scaffoldMessenger = ScaffoldMessenger.of(context);
-      // await ref.read(adminProductEditControllerProvider.notifier).updateProduct(
-      //       product: product,
-      //       title: _titleController.text,
-      //       description: _descriptionController.text,
-      //       price: _priceController.text,
-      //       availableQuantity: _availableQuantityController.text,
-      //     );
-      // // Inform the user that the product has been updated
-      // scaffoldMessenger.showSnackBar(
-      //   SnackBar(
-      //     content: Text(
-      //       'Product updated'.hardcoded,
-      //     ),
-      //   ),
-      // );
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Uncomment
-    // ref.listen<AsyncValue>(
-    //   adminProductEditControllerProvider,
-    //   (_, state) => state.showAlertDialogOnError(context),
-    // );
-    // final state = ref.watch(adminProductEditControllerProvider);
-    // final isLoading = state.isLoading;
-    const isLoading = false;
+    ref.listen<AsyncValue>(
+      adminProductEditControllerProvider,
+      (_, state) => state.showAlertDialogOnError(context),
+    );
+    final state = ref.watch(adminProductEditControllerProvider);
+    final isLoading = state.isLoading;
     const autovalidateMode = AutovalidateMode.disabled;
     return Scaffold(
       appBar: AppBar(

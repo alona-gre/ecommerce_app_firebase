@@ -19,6 +19,16 @@ class ImageUploadService {
     // save id and downloadUrl to Firestore
     ref.read(productsRepositoryProvider).createProduct(product.id, downloadUrl);
   }
+
+  Future<void> deleteProduct(Product product) async {
+    // delete an image from storage
+    await ref
+        .read(imageUploadRepositoryProvider)
+        .deleteProductImage(product.imageUrl);
+
+    // delete product data from Firestore
+    ref.read(productsRepositoryProvider).deleteProduct(product.id);
+  }
 }
 
 @riverpod

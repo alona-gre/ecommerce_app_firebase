@@ -68,6 +68,15 @@ class ProductsRepository {
       SetOptions(merge: true),
     );
   }
+
+  Future<void> updateProduct(Product product) {
+    final ref = _productRef(product.id);
+    return ref.set(product);
+  }
+
+  Future<void> deleteProduct(ProductID id) {
+    return _firestore.doc(productPath(id)).delete();
+  }
 }
 
 @Riverpod(keepAlive: true)
