@@ -44,6 +44,12 @@ class ProductsRepository {
     return ref.snapshots().map((snapshot) => snapshot.data());
   }
 
+  Future<Product?> fetchProduct(ProductID id) async {
+    final ref = _productRef(id);
+    final snapshot = await ref.get();
+    return snapshot.data();
+  }
+
 // * Temporary search implementation.
   // * Note: this is quite inefficient as it pulls the entire product list
   // * and then filters the data on the client
@@ -97,9 +103,15 @@ Future<List<Product>> productsListFuture(ProductsListFutureRef ref) {
 }
 
 @riverpod
-Stream<Product?> product(ProductRef ref, ProductID id) {
+Stream<Product?> productStream(ProductStreamRef ref, ProductID id) {
   final productsRepository = ref.watch(productsRepositoryProvider);
   return productsRepository.watchProduct(id);
+}
+
+@riverpod
+Future<Product?> productFuture(ProductFutureRef ref, ProductID id) {
+  final productsRepository = ref.watch(productsRepositoryProvider);
+  return productsRepository.fetchProduct(id);
 }
 
 @riverpod

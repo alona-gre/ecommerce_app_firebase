@@ -18,7 +18,7 @@ class AdminProductUploadController extends _$AdminProductUploadController
     try {
       state = const AsyncLoading();
       // delegate product upload to a service class
-      ref.read(imageUploadServiceProvider).uploadProduct(product);
+      await ref.read(imageUploadServiceProvider).uploadProduct(product);
 
       // on success, go back to edit product page
       ref.read(goRouterProvider).goNamed(

@@ -4,13 +4,17 @@ import 'package:riverpod_ecommerce_app_firebase/src/features/products/domain/pro
 import 'package:riverpod_ecommerce_app_firebase/src/features/products_admin/application/image_upload_service.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/products_admin/data/image_upload_repository.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/routing/app_router.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/utils/notifier_mounted.dart';
 
 part 'admin_product_edit_controller.g.dart';
 
 @riverpod
-class AdminProductEditController extends _$AdminProductEditController {
+class AdminProductEditController extends _$AdminProductEditController
+    with NotifierMounted {
+  @override
   FutureOr<void> build() {
-    // nothing to do
+    ref.onDispose(setUnmounted);
+    // no-op
   }
 
   Future<bool> updateProduct({
@@ -21,9 +25,10 @@ class AdminProductEditController extends _$AdminProductEditController {
     required String availableQuantity,
   }) async {
     final productsRepository = ref.read(productsRepositoryProvider);
-    // parse the input values (alreadypre-validated)
+    // parse the input values (already pre-validated)
     final priceValue = double.parse(price);
     final availableQuantityValue = int.parse(availableQuantity);
+    // Update product metadata (keep the pre-existing id and imageUrl)
     final updatedProduct = product.copyWith(
       title: title,
       description: description,
@@ -32,26 +37,31 @@ class AdminProductEditController extends _$AdminProductEditController {
     );
 
     state = const AsyncLoading();
-    state = await AsyncValue.guard(() =>
-        ref.read(productsRepositoryProvider).updateProduct(updatedProduct));
-    final success = state.hasError == false;
-    // on success, go back to the previous screen
-    if (success) {
-      ref.read(goRouterProvider).pop();
+    final value = await AsyncValue.guard(
+        () => productsRepository.updateProduct(updatedProduct));
+    final success = value.hasError == false;
+    if (mounted) {
+      state = value;
+      if (success) {
+        // on success, go back to previous screen
+        ref.read(goRouterProvider).pop();
+      }
     }
     return success;
   }
 
-  Future<bool> deleteProduct(Product product) async {
+  Future<void> deleteProduct(Product product) async {
     final imageUploadService = ref.read(imageUploadServiceProvider);
     state = const AsyncLoading();
-    state =
+    final value =
         await AsyncValue.guard(() => imageUploadService.deleteProduct(product));
-    final success = state.hasError == false;
-    // on success, go back to the previous screen
-    if (success) {
-      ref.read(goRouterProvider).pop();
+    final success = value.hasError == false;
+    if (mounted) {
+      state = value;
+      if (success) {
+        // on success, go back to the previous screen
+        ref.read(goRouterProvider).pop();
+      }
     }
-    return success;
   }
 }

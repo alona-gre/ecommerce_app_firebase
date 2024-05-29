@@ -38,6 +38,12 @@ class FakeProductsRepository implements ProductsRepository {
     return watchProductsList().map((products) => _getProduct(products, id));
   }
 
+  // Retrieve a specific product by ID
+  @override
+  Future<Product?> fetchProduct(String id) {
+    return Future.value(_getProduct(_products.value, id));
+  }
+
   /// Update product or add a new one
   Future<void> setProduct(Product product) async {
     await delay(addDelay);

@@ -25,19 +25,26 @@ class AdminProductEditScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final productValue = ref.watch(productProvider(productId));
-    return AsyncValueWidget<Product?>(
-      value: productValue,
+    // * By watching a [FutureProvider], the data is only loaded once.
+    // * This prevents unintended rebuilds while the user is entering form data
+    final productValue = ref.watch(productFutureProvider(productId));
+    // * Using .when rather than [AsyncValueWidget] to provide custom error and
+    // * loading screens
+    return productValue.when(
       data: (product) => product != null
           ? AdminProductEditScreenContents(product: product)
           : Scaffold(
-              appBar: AppBar(
-                title: Text('Edit Product'.hardcoded),
-              ),
+              appBar: AppBar(title: Text('Edit Product'.hardcoded)),
               body: Center(
                 child: ErrorMessageWidget('Product not found'.hardcoded),
               ),
             ),
+      // * to prevent a black screen, return a [Scaffold] from the error and
+      // * loading screens
+      error: (e, st) =>
+          Scaffold(body: Center(child: ErrorMessageWidget(e.toString()))),
+      loading: () =>
+          const Scaffold(body: Center(child: CircularProgressIndicator())),
     );
   }
 }
@@ -110,21 +117,25 @@ class _AdminProductScreenContentsState
   Future<void> _submit() async {
     if (_formKey.currentState!.validate()) {
       final scaffoldMessenger = ScaffoldMessenger.of(context);
-      await ref.read(adminProductEditControllerProvider.notifier).updateProduct(
+      final success = await ref
+          .read(adminProductEditControllerProvider.notifier)
+          .updateProduct(
             product: product,
             title: _titleController.text,
             description: _descriptionController.text,
             price: _priceController.text,
             availableQuantity: _availableQuantityController.text,
           );
-      // Inform the user that the product has been updated
-      scaffoldMessenger.showSnackBar(
-        SnackBar(
-          content: Text(
-            'Product updated'.hardcoded,
+      if (success) {
+        // Inform the user that the product has been updated
+        scaffoldMessenger.showSnackBar(
+          SnackBar(
+            content: Text(
+              'Product updated'.hardcoded,
+            ),
           ),
-        ),
-      );
+        );
+      }
     }
   }
 
