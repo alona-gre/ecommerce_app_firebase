@@ -125,6 +125,8 @@ class _AdminProductScreenContentsState
             description: _descriptionController.text,
             price: _priceController.text,
             availableQuantity: _availableQuantityController.text,
+            // TODO: add selectedImages
+            // imageUrls: selectedImages,
           );
       if (success) {
         // Inform the user that the product has been updated
@@ -166,9 +168,8 @@ class _AdminProductScreenContentsState
             child: ResponsiveTwoColumnLayout(
               startContent: Card(
                 child: Padding(
-                  padding: const EdgeInsets.all(Sizes.p16),
-                  child: CustomImage(imageUrl: product.imageUrl),
-                ),
+                    padding: const EdgeInsets.all(Sizes.p16),
+                    child: CarouselWidget(imageUrls: product.imageUrls)),
               ),
               spacing: Sizes.p16,
               endContent: Card(

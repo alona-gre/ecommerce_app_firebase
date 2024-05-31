@@ -64,9 +64,8 @@ class ProductDetails extends ConsumerWidget {
     return ResponsiveTwoColumnLayout(
       startContent: Card(
         child: Padding(
-          padding: const EdgeInsets.all(Sizes.p16),
-          child: CustomImage(imageUrl: product.imageUrl),
-        ),
+            padding: const EdgeInsets.all(Sizes.p16),
+            child: CarouselWidget(imageUrls: product.imageUrls)),
       ),
       spacing: Sizes.p16,
       endContent: Card(

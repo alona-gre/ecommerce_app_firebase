@@ -64,11 +64,11 @@ class ProductsRepository {
         .toList();
   }
 
-  Future<void> createProduct(ProductID id, String imageUrl) {
+  Future<void> createProduct(ProductID id, List<String> imageUrls) {
     return _firestore.doc(productPath(id)).set(
       {
         'id': id,
-        'imageUrl': imageUrl,
+        'imageUrls': imageUrls,
       },
       // use merge: true to  keep old  fields (if any)
       SetOptions(merge: true),

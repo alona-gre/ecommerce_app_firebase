@@ -12,19 +12,23 @@ class ImageUploadService {
 
   Future<void> uploadProduct(Product product) async {
     // upload to storage and return downloadUrl
-    final downloadUrl = await ref
+    final downloadUrls = await ref
         .read(imageUploadRepositoryProvider)
-        .uploadProductImageFromAsset(product.imageUrl, product.id);
+        .uploadProductImagesFromAssets(product.imageUrls, product.id);
 
     // save id and downloadUrl to Firestore
-    ref.read(productsRepositoryProvider).createProduct(product.id, downloadUrl);
+    ref
+        .read(productsRepositoryProvider)
+        .createProduct(product.id, downloadUrls);
   }
 
+  // TODO: correct
+  //
   Future<void> deleteProduct(Product product) async {
     // delete an image from storage
     await ref
         .read(imageUploadRepositoryProvider)
-        .deleteProductImage(product.imageUrl);
+        .deleteProductImage(product.imageUrls);
 
     // delete product data from Firestore
     ref.read(productsRepositoryProvider).deleteProduct(product.id);
