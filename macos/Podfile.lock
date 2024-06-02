@@ -958,6 +958,8 @@ PODS:
     - firebase_core
     - FlutterMacOS
     - nanopb (< 2.30910.0, >= 2.30908.0)
+  - file_selector_macos (0.0.1):
+    - FlutterMacOS
   - Firebase/Auth (10.22.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 10.22.0)
@@ -1147,6 +1149,7 @@ PODS:
 
 DEPENDENCIES:
   - cloud_firestore (from `Flutter/ephemeral/.symlinks/plugins/cloud_firestore/macos`)
+  - file_selector_macos (from `Flutter/ephemeral/.symlinks/plugins/file_selector_macos/macos`)
   - firebase_auth (from `Flutter/ephemeral/.symlinks/plugins/firebase_auth/macos`)
   - firebase_core (from `Flutter/ephemeral/.symlinks/plugins/firebase_core/macos`)
   - firebase_storage (from `Flutter/ephemeral/.symlinks/plugins/firebase_storage/macos`)
@@ -1181,6 +1184,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   cloud_firestore:
     :path: Flutter/ephemeral/.symlinks/plugins/cloud_firestore/macos
+  file_selector_macos:
+    :path: Flutter/ephemeral/.symlinks/plugins/file_selector_macos/macos
   firebase_auth:
     :path: Flutter/ephemeral/.symlinks/plugins/firebase_auth/macos
   firebase_core:
@@ -1198,6 +1203,7 @@ SPEC CHECKSUMS:
   abseil: d121da9ef7e2ff4cab7666e76c5a3e0915ae08c3
   BoringSSL-GRPC: 1e2348957acdbcad360b80a264a90799984b2ba6
   cloud_firestore: ca256bd6d6834f56a5831db5cb7e1c13dad63105
+  file_selector_macos: 54fdab7caa3ac3fc43c9fac4d7d8d231277f8cf2
   Firebase: 797fd7297b7e1be954432743a0b3f90038e45a71
   firebase_auth: da7042c5d5460fdb30b3f0fca1f6acf21d60860c
   firebase_core: 94cef1d79e26747286a4808b2345c1ecb8501b11

@@ -6,8 +6,7 @@ const kTestProducts = [
     id: '1',
     imageUrls: [
       'assets/products/bruschetta-plate.jpg',
-      'assets/products/bruschetta-plate.jpg',
-      'assets/products/bruschetta-plate.jpg',
+      'assets/products/juicer-citrus-fruits.jpg',
     ],
     title: 'Bruschetta plate',
     description: 'Lorem ipsum',
@@ -18,8 +17,7 @@ const kTestProducts = [
     id: '2',
     imageUrls: [
       'assets/products/mozzarella-plate.jpg',
-      'assets/products/mozzarella-plate.jpg',
-      'assets/products/mozzarella-plate.jpg'
+      'assets/products/honey-pot.jpg'
     ],
     title: 'Mozzarella plate',
     description: 'Lorem ipsum',
@@ -104,22 +102,6 @@ const kTestProducts = [
     title: 'Flowers plate',
     description: 'Lorem ipsum',
     price: 22,
-    availableQuantity: 10,
-  ),
-  Product(
-    id: '13',
-    imageUrls: ['assets/products/juicer-citrus-fruits.jpg'],
-    title: 'Juicer for citrus fruits',
-    description: 'Lorem ipsum',
-    price: 14,
-    availableQuantity: 10,
-  ),
-  Product(
-    id: '14',
-    imageUrls: ['assets/products/honey-pot.jpg'],
-    title: 'Honey pot',
-    description: 'Lorem ipsum',
-    price: 16,
     availableQuantity: 10,
   ),
 ];

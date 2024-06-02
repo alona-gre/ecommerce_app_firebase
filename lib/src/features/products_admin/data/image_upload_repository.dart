@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -26,6 +28,24 @@ class ImageUploadRepository {
 
       // upload to firebase storage
       final result = await _uploadAsset(bytes, filename);
+
+      // return download url
+      final downloadUrl = await result.ref.getDownloadURL();
+      downloadUrls.add(downloadUrl);
+    }
+    return downloadUrls;
+  }
+
+  /// Upload an image file to Firebase Storage and returns the download URL
+  Future<List<String>> uploadProductImagesFromFiles(
+      List<File> imageFiles, ProductID productId) async {
+    List<String> downloadUrls = [];
+    for (final imageFile in imageFiles) {
+      debugPrint('$imageFile');
+      final fileName = getFileName(imageFile);
+      final ref = _storage.ref('products/$fileName');
+      // send a request to put a file to storage
+      final result = await ref.putFile(imageFile);
 
       // return download url
       final downloadUrl = await result.ref.getDownloadURL();
@@ -68,15 +88,14 @@ class ImageUploadRepository {
       try {
         await _storage.refFromURL(imageUrl).delete();
       } on FirebaseException catch (e) {
-        if (e.code == 'object-not-found') {
-          debugPrint('Image not found: $imageUrl.');
-          return;
-        } else {
-          // Handle other potential exceptions
-          throw Exception(e.code);
-        }
+        throw Exception(e.code);
       }
     }
+  }
+
+  String getFileName(File imageFile) {
+    final pathSegments = imageFile.path.split('/');
+    return pathSegments.last;
   }
 }
 

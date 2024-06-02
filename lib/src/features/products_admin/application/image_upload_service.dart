@@ -22,8 +22,6 @@ class ImageUploadService {
         .createProduct(product.id, downloadUrls);
   }
 
-  // TODO: correct
-  //
   Future<void> deleteProduct(Product product) async {
     // delete an image from storage
     await ref

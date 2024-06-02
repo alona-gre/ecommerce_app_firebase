@@ -1,7 +1,8 @@
+import 'dart:io';
+
 import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/action_text_button.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/alert_dialogs.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/async_value_widget.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/custom_image.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/carousel_slider.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/custom_text_button.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/error_message_widget.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/responsive_center.dart';
@@ -9,6 +10,7 @@ import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/responsive_tw
 import 'package:riverpod_ecommerce_app_firebase/src/constants/app_sizes.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/products/data/products_repository.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/products/domain/product.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/features/products_admin/data/image_upload_repository.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/products_admin/data/template_products_providers.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/products_admin/presentation/admin_product_edit_controller.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/products_admin/presentation/product_validator.dart';
@@ -70,6 +72,9 @@ class _AdminProductScreenContentsState
 
   Product get product => widget.product;
 
+  List<File> _newlyAddedImages = [];
+  late List<String> _copiedImageUrls;
+
   @override
   void initState() {
     super.initState();
@@ -78,6 +83,9 @@ class _AdminProductScreenContentsState
     _descriptionController.text = product.description;
     _priceController.text = product.price.toString();
     _availableQuantityController.text = product.availableQuantity.toString();
+
+    // Store a copy of the initial image URLs
+    _copiedImageUrls = List.unmodifiable(product.imageUrls);
   }
 
   @override
@@ -114,9 +122,29 @@ class _AdminProductScreenContentsState
     }
   }
 
+  // add new images to existing imageUrls, they will be sent to Firestore
+  List<String> updatedImageUrls(List<String> newImagesDownloadedUrls) {
+    final currentImageUrls = product.imageUrls;
+    for (final imageUrl in newImagesDownloadedUrls) {
+      currentImageUrls.add(imageUrl);
+    }
+    return currentImageUrls;
+  }
+
   Future<void> _submit() async {
     if (_formKey.currentState!.validate()) {
       final scaffoldMessenger = ScaffoldMessenger.of(context);
+
+      // send addedImages to the storage and get urls
+      final newImagesDownloadedUrls = await ref
+          .read(imageUploadRepositoryProvider)
+          .uploadProductImagesFromFiles(
+            _newlyAddedImages,
+            product.id,
+          );
+
+      final updatedImages = updatedImageUrls(newImagesDownloadedUrls);
+
       final success = await ref
           .read(adminProductEditControllerProvider.notifier)
           .updateProduct(
@@ -125,8 +153,7 @@ class _AdminProductScreenContentsState
             description: _descriptionController.text,
             price: _priceController.text,
             availableQuantity: _availableQuantityController.text,
-            // TODO: add selectedImages
-            // imageUrls: selectedImages,
+            updatedImageUrls: updatedImages,
           );
       if (success) {
         // Inform the user that the product has been updated
@@ -138,6 +165,14 @@ class _AdminProductScreenContentsState
           ),
         );
       }
+
+      // TODO: Delete files from storage that are not in updatedImages;
+      final imageUrlstoRemove =
+          _copiedImageUrls.toSet().difference(updatedImages.toSet());
+
+      await ref
+          .read(imageUploadRepositoryProvider)
+          .deleteProductImage(imageUrlstoRemove.toList());
     }
   }
 
@@ -168,8 +203,14 @@ class _AdminProductScreenContentsState
             child: ResponsiveTwoColumnLayout(
               startContent: Card(
                 child: Padding(
-                    padding: const EdgeInsets.all(Sizes.p16),
-                    child: CarouselWidget(imageUrls: product.imageUrls)),
+                  padding: const EdgeInsets.all(Sizes.p16),
+                  child: CarouselSliderEdit(
+                    imageUrls: product.imageUrls,
+                    onPreviewedImages: (addedImages) {
+                      _newlyAddedImages = addedImages;
+                    },
+                  ),
+                ),
               ),
               spacing: Sizes.p16,
               endContent: Card(

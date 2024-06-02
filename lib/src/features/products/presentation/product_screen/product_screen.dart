@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/async_value_widget.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/custom_image.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/carousel_slider.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/empty_placeholder_widget.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/responsive_center.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/responsive_two_column_layout.dart';
@@ -65,7 +65,7 @@ class ProductDetails extends ConsumerWidget {
       startContent: Card(
         child: Padding(
             padding: const EdgeInsets.all(Sizes.p16),
-            child: CarouselWidget(imageUrls: product.imageUrls)),
+            child: CarouselSlider(imageUrls: product.imageUrls)),
       ),
       spacing: Sizes.p16,
       endContent: Card(

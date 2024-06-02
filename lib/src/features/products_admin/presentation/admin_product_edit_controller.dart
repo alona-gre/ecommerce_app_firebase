@@ -2,7 +2,6 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/products/data/products_repository.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/products/domain/product.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/products_admin/application/image_upload_service.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/features/products_admin/data/image_upload_repository.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/routing/app_router.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/utils/notifier_mounted.dart';
 
@@ -23,6 +22,7 @@ class AdminProductEditController extends _$AdminProductEditController
     required String description,
     required String price,
     required String availableQuantity,
+    required List<String> updatedImageUrls,
   }) async {
     final productsRepository = ref.read(productsRepositoryProvider);
     // parse the input values (already pre-validated)
@@ -34,6 +34,7 @@ class AdminProductEditController extends _$AdminProductEditController
       description: description,
       price: priceValue,
       availableQuantity: availableQuantityValue,
+      imageUrls: updatedImageUrls,
     );
 
     state = const AsyncLoading();

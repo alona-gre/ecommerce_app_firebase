@@ -1,7 +1,7 @@
+import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/carousel_slider.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/products/presentation/product_screen/product_average_rating.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/localization/string_hardcoded.dart';
 import 'package:flutter/material.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/custom_image.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/constants/app_sizes.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/products/domain/product.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/utils/currency_formatter.dart';
@@ -29,7 +29,7 @@ class ProductCard extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              CustomImage(imageUrl: product.imageUrls[0]),
+              CarouselSlider(imageUrls: product.imageUrls),
               gapH8,
               const Divider(),
               gapH8,
