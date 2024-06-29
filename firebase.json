@@ -1,1 +1,81 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"flutter-firebase-masterc-65dba","appId":"1:246036253378:android:46922d926cd9a0a004c95b","fileOutput":"android/app/google-services.json"}},"ios":{"default":{"projectId":"flutter-firebase-masterc-65dba","appId":"1:246036253378:ios:665f0a4f98c2eb1604c95b","uploadDebugSymbols":false,"fileOutput":"ios/Runner/GoogleService-Info.plist"}},"macos":{"default":{"projectId":"flutter-firebase-masterc-65dba","appId":"1:246036253378:ios:665f0a4f98c2eb1604c95b","uploadDebugSymbols":false,"fileOutput":"macos/Runner/GoogleService-Info.plist"}},"dart":{"lib/firebase_options.dart":{"projectId":"flutter-firebase-masterc-65dba","configurations":{"android":"1:246036253378:android:46922d926cd9a0a004c95b","ios":"1:246036253378:ios:665f0a4f98c2eb1604c95b","macos":"1:246036253378:ios:665f0a4f98c2eb1604c95b","web":"1:246036253378:web:e33dcfea38f1818604c95b"}}}}}}
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "flutter-firebase-masterc-65dba",
+          "appId": "1:246036253378:android:46922d926cd9a0a004c95b",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "ios": {
+        "default": {
+          "projectId": "flutter-firebase-masterc-65dba",
+          "appId": "1:246036253378:ios:665f0a4f98c2eb1604c95b",
+          "uploadDebugSymbols": false,
+          "fileOutput": "ios/Runner/GoogleService-Info.plist"
+        }
+      },
+      "macos": {
+        "default": {
+          "projectId": "flutter-firebase-masterc-65dba",
+          "appId": "1:246036253378:ios:665f0a4f98c2eb1604c95b",
+          "uploadDebugSymbols": false,
+          "fileOutput": "macos/Runner/GoogleService-Info.plist"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "flutter-firebase-masterc-65dba",
+          "configurations": {
+            "android": "1:246036253378:android:46922d926cd9a0a004c95b",
+            "ios": "1:246036253378:ios:665f0a4f98c2eb1604c95b",
+            "macos": "1:246036253378:ios:665f0a4f98c2eb1604c95b",
+            "web": "1:246036253378:web:e33dcfea38f1818604c95b"
+          }
+        }
+      }
+    }
+  },
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log"
+      ],
+      "predeploy": [
+        "npm --prefix \"$RESOURCE_DIR\" run lint",
+        "npm --prefix \"$RESOURCE_DIR\" run build"
+      ]
+    }
+  ],
+  "storage": {
+    "rules": "storage.rules"
+  },
+  "emulators": {
+    "auth": {
+      "port": 9099
+    },
+    "functions": {
+      "port": 5001
+    },
+    "firestore": {
+      "port": 8080
+    },
+    "storage": {
+      "port": 9199
+    },
+    "ui": {
+      "enabled": true
+    },
+    "singleProjectMode": true
+  }
+}

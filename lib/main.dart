@@ -15,8 +15,10 @@ void main() async {
   usePathUrlStrategy();
   // create an app bootstrap instance
   final appBootstrap = AppBootstrap();
-  // create a container configured with all the "fake" repositories
-  final container = await createFirebaseProviderContainer();
+  // connect to Firebase emulators
+  appBootstrap.setupEmulators();
+  // create a container configured with all the Firebase repositories
+  final container = await appBootstrap.createFirebaseProviderContainer();
   // use the container above to create the root widget
   final root = appBootstrap.createRootWidget(container: container);
   // start the app
