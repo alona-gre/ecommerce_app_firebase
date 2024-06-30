@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/authentication/data/firebase_app_user.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/authentication/domain/app_user.dart';
+
 part 'auth_repository.g.dart';
 
 class AuthRepository {
@@ -25,6 +26,8 @@ class AuthRepository {
     return _auth.signOut();
   }
 
+  /// Notifies about changes to the user's sign-in state (such as sign-in or
+  /// sign-out).
   Stream<AppUser?> authStateChanges() {
     return _auth.authStateChanges().map((_convertUser));
   }
@@ -34,6 +37,12 @@ class AuthRepository {
   /// Helper method to convert a Firebase [User] to an [AppUser]
   AppUser? _convertUser(User? user) {
     return user != null ? FirebaseAppUser(user) : null;
+  }
+
+  /// Notifies about changes to the user's sign-in state (such as sign-in or
+  /// sign-out) and also token refresh events.
+  Stream<AppUser?> idTokenChanges() {
+    return _auth.idTokenChanges().map(_convertUser);
   }
 }
 
@@ -48,4 +57,20 @@ AuthRepository authRepository(AuthRepositoryRef ref) {
 Stream<AppUser?> authStateChanges(AuthStateChangesRef ref) {
   final authRepository = ref.watch(authRepositoryProvider);
   return authRepository.authStateChanges();
+}
+
+@Riverpod(keepAlive: true)
+Stream<AppUser?> idTokenChanges(IdTokenChangesRef ref) {
+  final authRepository = ref.watch(authRepositoryProvider);
+  return authRepository.idTokenChanges();
+}
+
+@riverpod
+FutureOr<bool> isCurrentUserAdmin(IsCurrentUserAdminRef ref) {
+  final user = ref.watch(idTokenChangesProvider).value;
+  if (user != null) {
+    return user.isAdmin();
+  } else {
+    return false;
+  }
 }
