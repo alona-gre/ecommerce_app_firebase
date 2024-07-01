@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/app.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/exceptions/error_logger.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/features/authentication/application/user_token_refresh_service.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/cart/application/cart_sync_service.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/localization/string_hardcoded.dart';
 
@@ -12,6 +13,8 @@ class AppBootstrap {
   Widget createRootWidget({required ProviderContainer container}) {
     // * Initialize CartSyncService to start the listener
     container.read(cartSyncServiceProvider);
+    // * Initialize UserTokenRefreshService
+    container.read(userTokenRefreshServiceProvider);
 
     // * Register error handlers. For more info, see:
     // * https://docs.flutter.dev/testing/errors
