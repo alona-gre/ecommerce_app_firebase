@@ -6,8 +6,6 @@ import 'package:riverpod_ecommerce_app_firebase/src/app_bootstrap.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/exceptions/async_error_logger.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/cart/data/local/fake_local_cart_repository.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/cart/data/local/local_cart_repository.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/features/cart/data/remote/fake_remote_cart_repository.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/features/cart/data/remote/remote_cart_repository.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/orders/data/fake_orders_repository.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/orders/data/orders_repository.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/reviews/data/fake_reviews_repository.dart';
@@ -39,7 +37,6 @@ extension AppBootstrapFirebase on AppBootstrap {
     final reviewsRepository = FakeReviewsRepository(addDelay: addDelay);
     // * set delay to false to make it easier to add/remove items
     final localCartRepository = FakeLocalCartRepository(addDelay: false);
-    final remoteCartRepository = FakeRemoteCartRepository(addDelay: false);
     final ordersRepository = FakeOrdersRepository(addDelay: addDelay);
 
     return ProviderContainer(
@@ -48,7 +45,6 @@ extension AppBootstrapFirebase on AppBootstrap {
         reviewsRepositoryProvider.overrideWithValue(reviewsRepository),
         ordersRepositoryProvider.overrideWithValue(ordersRepository),
         localCartRepositoryProvider.overrideWithValue(localCartRepository),
-        remoteCartRepositoryProvider.overrideWithValue(remoteCartRepository),
       ],
       observers: [AsyncErrorLogger()],
     );
