@@ -114,9 +114,10 @@ class CarouselSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlutterCarousel(
       options: CarouselOptions(
-        height: 270.0,
         showIndicator: true,
+        viewportFraction: 1,
         slideIndicator: const CircularSlideIndicator(
+            indicatorRadius: 4,
             indicatorBorderColor: Colors.grey,
             currentIndicatorColor: Colors.grey),
         pageSnapping: true,

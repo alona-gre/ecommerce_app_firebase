@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/async_value_widget.dart';
-import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/custom_image.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/carousel_slider.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/common_widgets/responsive_two_column_layout.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/constants/app_sizes.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/cart/domain/item.dart';
@@ -79,7 +79,8 @@ class ShoppingCartItemContents extends ConsumerWidget {
       startFlex: 1,
       endFlex: 2,
       breakpoint: 320,
-      startContent: CustomImage(imageUrl: product.imageUrls[0]),
+      startContent: CarouselSlider(imageUrls: product.imageUrls),
+      // CustomImage(imageUrl: product.imageUrls[0]),
       spacing: Sizes.p24,
       endContent: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

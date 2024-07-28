@@ -11,7 +11,6 @@ import 'package:riverpod_ecommerce_app_firebase/src/features/cart/domain/mutable
 import 'package:riverpod_ecommerce_app_firebase/src/features/products/data/products_repository.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/features/products/domain/product.dart';
 
-
 part 'cart_service.g.dart';
 
 class CartService {
@@ -93,15 +92,15 @@ int cartItemsCount(CartItemsCountRef ref) {
 }
 
 @riverpod
-double cartTotal(CartTotalRef ref) {
-  final cart = ref.watch(cartProvider).value ?? const Cart();
-  final productsList = ref.watch(productsListStreamProvider).value ?? [];
-  if (cart.items.isNotEmpty && productsList.isNotEmpty) {
+Future<double> cartTotal(CartTotalRef ref) async {
+  final cart = await ref.watch(cartProvider.future);
+  if (cart.items.isNotEmpty) {
     var total = 0.0;
     for (final item in cart.items.entries) {
-      final product =
-          productsList.firstWhere((product) => product.id == item.key);
-      total += product.price * item.value;
+      final product = await ref.watch(productStreamProvider(item.key).future);
+      if (product != null) {
+        total += product.price * item.value;
+      }
     }
     return total;
   } else {

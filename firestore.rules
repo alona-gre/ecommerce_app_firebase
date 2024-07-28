@@ -13,7 +13,7 @@ service cloud.firestore {
     }
     // cart
     match /cart/{uid} {
-      allow read, write: if request.auth.uid == uid;
+      allow read, write: if request.auth.uid == uid; 
     }
   }
 }
