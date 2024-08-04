@@ -40,8 +40,10 @@ class _CarouselSliderState extends State<CarouselSliderEdit> {
           height: 270.0,
           showIndicator: true,
           slideIndicator: const CircularSlideIndicator(
-              indicatorBorderColor: Colors.grey,
-              currentIndicatorColor: Colors.grey),
+
+              // indicatorBorderColor: Colors.grey,
+              // currentIndicatorColor: Colors.grey,
+              ),
           pageSnapping: true,
         ),
         items: [
@@ -117,9 +119,10 @@ class CarouselSlider extends StatelessWidget {
         showIndicator: true,
         viewportFraction: 1,
         slideIndicator: const CircularSlideIndicator(
-            indicatorRadius: 4,
-            indicatorBorderColor: Colors.grey,
-            currentIndicatorColor: Colors.grey),
+            // indicatorRadius: 4,
+            // indicatorBorderColor: Colors.grey,
+            // currentIndicatorColor: Colors.grey,
+            ),
         pageSnapping: true,
       ),
       items: imageUrls.map((i) {
