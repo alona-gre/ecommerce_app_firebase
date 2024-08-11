@@ -5,6 +5,7 @@ import 'package:riverpod_ecommerce_app_firebase/src/app_bootstrap.dart';
 // ignore:depend_on_referenced_packages
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:riverpod_ecommerce_app_firebase/src/app_bootstrap_firebase.dart';
+import 'package:riverpod_ecommerce_app_firebase/src/app_bootstrap_stripe.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,6 +18,8 @@ void main() async {
   final appBootstrap = AppBootstrap();
   // connect to Firebase emulators
   // appBootstrap.setupEmulators();
+  // Stripe setup
+  await appBootstrap.setupStripe();
   // create a container configured with all the Firebase repositories
   final container = await appBootstrap.createFirebaseProviderContainer();
   // use the container above to create the root widget
